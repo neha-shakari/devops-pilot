@@ -5,6 +5,7 @@ import LogAnalyzer from "./pages/LogAnalyzer";
 import DockerGenerator from "./pages/DockerGenerator";
 import CICDGenerator from "./pages/CICDGenerator";
 import KubernetesGenerator from "./pages/KubernetesGenerator";
+import DockerGenerator from "./pages/DockerGenerator";
 
 
 function App(){
@@ -14,6 +15,11 @@ function App(){
         <BrowserRouter>
 
             <Routes>
+              <Route 
+    path="/docker-generator" 
+    element={<DockerGenerator />} 
+/>
+
 
                 <Route path="/" element={<Dashboard />} />
 

@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: devopspilot
-gemini:
-  api-key: api_key

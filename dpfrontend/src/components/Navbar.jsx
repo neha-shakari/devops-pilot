@@ -27,6 +27,9 @@ function Navbar() {
                 >
                     GitHub
                 </a>
+                <Link to="/docker-generator">
+    Docker Generator
+</Link>
 
             </div>
 
