@@ -1,18 +1,17 @@
 import Navbar from "../components/Navbar";
 import FeatureCard from "../components/FeatureCard";
 import StatusBadge from "../components/StatusBadge";
-import Sidebar from "../components/Sidebar";
+
 
 function Dashboard(){
 
     return (
 
-        <div className="min-h-screen bg-slate-900 flex">
-            <Sidebar />
+        <div className="min-h-screen bg-slate-900">
 
             <Navbar />
 
-            <div className="px-10 py-10">
+            <div className="px-6 py-8">
 
                 <div className="flex justify-between items-center">
                     

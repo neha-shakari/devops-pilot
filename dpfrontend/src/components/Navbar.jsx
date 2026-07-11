@@ -1,19 +1,35 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
+
     return (
-        <nav className="flex justify-between items-center px-8 py-5 bg-slate-800 text-white">
-            <h1 className="text-2xl font-bold">
-                DevOpsPilot 🚀
+        <nav className="bg-slate-800 px-8 py-5 flex justify-between items-center">
+
+            <h1 className="text-2xl font-bold text-white">
+                🚀 DevOpsPilot
             </h1>
 
-            <div className="flex items-center gap-6">
-                <span className="hover:text-blue-400 cursor-pointer">
-                    Dashboard
-                </span>
 
-                <span className="hover:text-blue-400 cursor-pointer">
+            <div className="flex gap-8">
+
+                <Link
+                    to="/"
+                    className="text-white hover:text-blue-400"
+                >
+                    Dashboard
+                </Link>
+
+
+                <a
+                    href="https://github.com/neha-shakari/devops-pilot"
+                    target="_blank"
+                    className="text-white hover:text-blue-400"
+                >
                     GitHub
-                </span>
+                </a>
+
             </div>
+
         </nav>
     );
 }
