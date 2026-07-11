@@ -1,27 +1,76 @@
-import { useEffect, useState } from "react";
-import api from "../services/api";
+import Navbar from "../components/Navbar";
+import FeatureCard from "../components/FeatureCard";
+import StatusBadge from "../components/StatusBadge";
+import Sidebar from "../components/Sidebar";
 
-function Dashboard() {
-
-    const [message, setMessage] = useState("");
-
-    useEffect(() => {
-        api.get("/api/health")
-            .then((response) => {
-                setMessage(response.data);
-            })
-            .catch(() => {
-                setMessage("Backend connection failed");
-            });
-    }, []);
+function Dashboard(){
 
     return (
-        <div>
-            <h1>DevOpsPilot Dashboard</h1>
 
-            <h3>{message}</h3>
+        <div className="min-h-screen bg-slate-900 flex">
+            <Sidebar />
+
+            <Navbar />
+
+            <div className="px-10 py-10">
+
+                <div className="flex justify-between items-center">
+                    
+                    <div>
+                        <h1 className="text-4xl font-bold text-white">
+                            Welcome to DevOpsPilot
+                        </h1>
+
+                        <p className="text-slate-400 mt-2">
+                            AI-powered DevOps automation platform
+                        </p>
+                    </div>
+
+                    <StatusBadge />
+
+                </div>
+
+
+                <div className="grid md:grid-cols-2 gap-6 mt-10">
+
+                    <FeatureCard
+                        title="AI Log Analyzer"
+                        description="Analyze errors and get AI-powered solutions"
+                        icon="🔍"
+                        path="/log-analyzer"
+                    />
+
+
+                    <FeatureCard
+                        title="Docker Generator"
+                        description="Generate production-ready Dockerfiles"
+                        icon="🐳"
+                        path="/docker"
+                    />
+
+
+                    <FeatureCard
+                        title="CI/CD Generator"
+                        description="Create GitHub Actions workflows"
+                        icon="⚙️"
+                        path="/cicd"
+                    />
+
+
+                    <FeatureCard
+                        title="Kubernetes Generator"
+                        description="Generate Kubernetes YAML files"
+                        icon="☸️"
+                        path="/kubernetes"
+                    />
+
+                </div>
+
+            </div>
+
         </div>
     );
 }
 
-export default Dashboard;           
+
+export default Dashboard;         
