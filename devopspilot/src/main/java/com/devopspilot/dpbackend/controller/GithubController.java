@@ -3,6 +3,8 @@ package com.devopspilot.dpbackend.controller;
 import com.devopspilot.dpbackend.dto.GithubRequest;
 import com.devopspilot.dpbackend.service.AIService;
 import org.springframework.web.bind.annotation.*;
+import com.devopspilot.dpbackend.dto.GithubAnalysisResponse;
+
 
 import java.util.Map;
 

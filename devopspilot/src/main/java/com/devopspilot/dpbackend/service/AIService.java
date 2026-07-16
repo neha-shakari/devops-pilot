@@ -3,6 +3,7 @@ package com.devopspilot.dpbackend.service;
 import com.google.genai.Client;
 import org.springframework.stereotype.Service;
 import com.google.genai.types.GenerateContentResponse;
+import com.devopspilot.dpbackend.dto.GithubAnalysisResponse;
 
 @Service
 public class AIService {

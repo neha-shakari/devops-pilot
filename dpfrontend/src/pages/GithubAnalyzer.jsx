@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 
 function GithubAnalyzer(){
@@ -7,6 +8,8 @@ function GithubAnalyzer(){
     const [repository, setRepository] = useState("");
     const [analysis, setAnalysis] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
 
 
     const analyzeRepository = async () => {
@@ -26,11 +29,15 @@ function GithubAnalyzer(){
             setAnalysis(response.data.analysis);
 
         }
+
         catch(error){
+
+            console.error(error);
 
             setAnalysis("Error analyzing repository");
 
         }
+
         finally{
 
             setLoading(false);
@@ -38,6 +45,7 @@ function GithubAnalyzer(){
         }
 
     };
+
 
 
     return (
@@ -97,9 +105,10 @@ function GithubAnalyzer(){
                 <div className="mt-8 bg-slate-800 rounded-xl p-6">
 
 
-                    <h2 className="text-xl font-bold mb-3">
-                        Repository Analysis
+                    <h2 className="text-2xl font-bold mb-5">
+                        📊 Repository Analysis
                     </h2>
+
 
 
                     <pre className="whitespace-pre-wrap text-slate-300">
@@ -107,9 +116,54 @@ function GithubAnalyzer(){
                     </pre>
 
 
+
+                    <div className="flex gap-4 mt-8">
+
+
+                        <button
+
+                            onClick={()=>navigate("/docker")}
+
+                            className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-xl"
+
+                        >
+                            🐳 Generate Dockerfile
+                        </button>
+
+
+
+                        <button
+
+                            onClick={()=>navigate("/cicd")}
+
+                            className="bg-green-600 hover:bg-green-700 px-5 py-3 rounded-xl"
+
+                        >
+                            ⚙️ Generate CI/CD
+                        </button>
+
+
+
+
+                        <button
+
+                            onClick={()=>navigate("/kubernetes")}
+
+                            className="bg-purple-600 hover:bg-purple-700 px-5 py-3 rounded-xl"
+
+                        >
+                            ☸️ Generate Kubernetes
+                        </button>
+
+
+
+                    </div>
+
+
                 </div>
 
             }
+
 
 
         </div>
