@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import FeatureCard from "../components/FeatureCard";
-import StatusBadge from "../components/StatusBadge";
+
 
 
 function Dashboard(){
@@ -41,7 +41,7 @@ function Dashboard(){
                     </div>
 
 
-                    <StatusBadge />
+                    
 
 
                 </div>
