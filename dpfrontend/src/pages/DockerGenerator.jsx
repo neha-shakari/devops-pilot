@@ -9,6 +9,43 @@ function DockerGenerator(){
     const [loading, setLoading] = useState(false);
 
 
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(dockerfile);
+            alert("Copied to clipboard!");
+        } 
+        catch(error){
+            console.error(error);
+        }
+    };
+
+
+    const downloadFile = () => {
+
+        const blob = new Blob([dockerfile], {
+            type: "text/plain",
+        });
+
+
+        const url = window.URL.createObjectURL(blob);
+
+
+        const a = document.createElement("a");
+
+        a.href = url;
+
+        a.download = "Dockerfile";
+
+
+        a.click();
+
+
+        window.URL.revokeObjectURL(url);
+
+    };
+
+
+
     const generateDockerfile = async () => {
 
         try {
@@ -23,14 +60,19 @@ function DockerGenerator(){
                 }
             );
 
+
             setDockerfile(response.data.dockerfile);
 
         }
+
         catch(error){
+
+            console.error(error);
 
             setDockerfile("Error generating Dockerfile");
 
         }
+
         finally{
 
             setLoading(false);
@@ -38,6 +80,7 @@ function DockerGenerator(){
         }
 
     };
+
 
 
     return (
@@ -74,7 +117,9 @@ function DockerGenerator(){
 
                 onClick={generateDockerfile}
 
-                className="mt-5 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl"
+                disabled={loading}
+
+                className="mt-5 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl disabled:bg-gray-500"
 
             >
 
@@ -91,15 +136,45 @@ function DockerGenerator(){
 
 
 
+
             {
                 dockerfile &&
 
                 <div className="mt-8 bg-slate-800 rounded-xl p-6">
 
 
-                    <h2 className="text-xl font-bold mb-3">
-                        Generated Dockerfile
-                    </h2>
+                    <div className="flex justify-between items-center mb-4">
+
+
+                        <h2 className="text-xl font-bold">
+                            Generated Dockerfile
+                        </h2>
+
+
+                        <div className="flex gap-3">
+
+
+                            <button
+                                onClick={copyToClipboard}
+                                className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg"
+                            >
+                                📋 Copy
+                            </button>
+
+
+                            <button
+                                onClick={downloadFile}
+                                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg"
+                            >
+                                ⬇ Download
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
 
 
                     <pre className="whitespace-pre-wrap text-slate-300">
