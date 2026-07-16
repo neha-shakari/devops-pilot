@@ -97,4 +97,54 @@ Project input:
 
         }
     }
+    public String analyzeRepository(String repository) {
+
+        String prompt = """
+You are a senior software architect and DevOps engineer.
+
+Analyze the following GitHub repository.
+
+Return the analysis in this format:
+
+Project Overview:
+...
+
+Technology Stack:
+...
+
+Architecture:
+...
+
+Key Features:
+...
+
+Possible Improvements:
+...
+
+DevOps Recommendations:
+...
+
+Keep the answer concise and structured.
+
+Repository:
+""" + repository;
+
+
+        try {
+
+            GenerateContentResponse response =
+                    client.models.generateContent(
+                            "models/gemini-3-flash-preview",
+                            prompt,
+                            null
+                    );
+
+            return response.text();
+
+        } catch (Exception e) {
+
+            return "Error communicating with Gemini: " + e.getMessage();
+
+        }
+    }
 }

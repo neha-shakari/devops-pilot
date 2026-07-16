@@ -5,7 +5,7 @@ import LogAnalyzer from "./pages/LogAnalyzer";
 import DockerGenerator from "./pages/DockerGenerator";
 import CICDGenerator from "./pages/CICDGenerator";
 import KubernetesGenerator from "./pages/KubernetesGenerator";
-import DockerGenerator from "./pages/DockerGenerator";
+import GithubAnalyzer from "./pages/GithubAnalyzer";
 
 
 function App(){
@@ -18,6 +18,10 @@ function App(){
               <Route 
     path="/docker-generator" 
     element={<DockerGenerator />} 
+/>
+<Route 
+    path="/github-analyzer" 
+    element={<GithubAnalyzer />} 
 />
 
 

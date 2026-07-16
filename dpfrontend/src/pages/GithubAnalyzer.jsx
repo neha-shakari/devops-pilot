@@ -2,33 +2,33 @@ import { useState } from "react";
 import api from "../services/api";
 
 
-function DockerGenerator(){
+function GithubAnalyzer(){
 
     const [repository, setRepository] = useState("");
-    const [dockerfile, setDockerfile] = useState("");
+    const [analysis, setAnalysis] = useState("");
     const [loading, setLoading] = useState(false);
 
 
-    const generateDockerfile = async () => {
+    const analyzeRepository = async () => {
 
         try {
 
             setLoading(true);
-            setDockerfile("");
+            setAnalysis("");
 
             const response = await api.post(
-                "/api/docker/generate",
+                "/api/github/analyze",
                 {
                     repository: repository
                 }
             );
 
-            setDockerfile(response.data.dockerfile);
+            setAnalysis(response.data.analysis);
 
         }
         catch(error){
 
-            setDockerfile("Error generating Dockerfile");
+            setAnalysis("Error analyzing repository");
 
         }
         finally{
@@ -46,21 +46,21 @@ function DockerGenerator(){
 
 
             <h1 className="text-4xl font-bold">
-                🐳 Dockerfile Generator
+                🔍 GitHub Repository Analyzer
             </h1>
 
 
             <p className="text-slate-400 mt-3">
-                Generate production-ready Dockerfiles using AI
+                Analyze repository architecture, technologies, and DevOps improvements
             </p>
 
 
 
-            <textarea
+            <input
 
-                className="mt-8 w-full h-52 bg-slate-800 rounded-xl p-5 outline-none"
+                className="mt-8 w-full bg-slate-800 rounded-xl p-5 outline-none"
 
-                placeholder="Enter GitHub repository URL, pom.xml, or package.json"
+                placeholder="Enter GitHub repository URL"
 
                 value={repository}
 
@@ -72,7 +72,7 @@ function DockerGenerator(){
 
             <button
 
-                onClick={generateDockerfile}
+                onClick={analyzeRepository}
 
                 className="mt-5 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl"
 
@@ -81,9 +81,9 @@ function DockerGenerator(){
                 {
                     loading
                     ?
-                    "Generating..."
+                    "Analyzing..."
                     :
-                    "Generate Dockerfile"
+                    "Analyze Repository"
                 }
 
             </button>
@@ -92,18 +92,18 @@ function DockerGenerator(){
 
 
             {
-                dockerfile &&
+                analysis &&
 
                 <div className="mt-8 bg-slate-800 rounded-xl p-6">
 
 
                     <h2 className="text-xl font-bold mb-3">
-                        Generated Dockerfile
+                        Repository Analysis
                     </h2>
 
 
                     <pre className="whitespace-pre-wrap text-slate-300">
-                        {dockerfile}
+                        {analysis}
                     </pre>
 
 
@@ -119,4 +119,4 @@ function DockerGenerator(){
 }
 
 
-export default DockerGenerator;
+export default GithubAnalyzer;

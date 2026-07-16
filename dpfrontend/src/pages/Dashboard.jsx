@@ -46,6 +46,12 @@ function Dashboard(){
                         icon="🐳"
                         path="/docker"
                     />
+                    <FeatureCard
+                        title="GitHub Analyzer"
+                        description="Analyze repositories and get DevOps insights"
+                        icon="🔍"
+                        path="/github-analyzer"
+                    />
 
 
                     <FeatureCard
